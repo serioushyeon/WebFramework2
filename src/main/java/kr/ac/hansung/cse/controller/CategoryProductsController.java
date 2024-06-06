@@ -72,6 +72,11 @@ public class CategoryProductsController {
 
 	@DeleteMapping("/{productId}")
 	public ResponseEntity<Void> removeProduct(@PathVariable Long categoryId, @PathVariable Long productId) {
+		Product product = productService.getProductById(productId);
+		Category category = categoryService.getCategoryById(categoryId);
 
+		productService.removeCategory(product, category);
+
+		return ResponseEntity.noContent().build();
 	}
 }
